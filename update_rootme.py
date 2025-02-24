@@ -1,6 +1,6 @@
 import requests
 
-USERNAME = "TON_USERNAME"
+USERNAME = "kylian_act"
 URL = f"https://www.root-me.org/API/public/user?login={USERNAME}"
 
 response = requests.get(URL)

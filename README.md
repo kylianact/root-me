@@ -1,1 +1,1 @@
-![Root-Me Score](https://img.shields.io/badge/dynamic/json?color=blue&label=RootMe%20Score&query=%24.score&url=https://www.root-me.org/API/public/user?login=kylian_act)
+![RootMe Score](https://raw.githubusercontent.com/root-me/main/rootme_score.png)

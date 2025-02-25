@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"  # Mise à jour quotidienne
   workflow_dispatch:  # Permet d'exécuter manuellement
 
+permissions:
+  contents: write  # Autorise l'écriture dans le repo
+
 jobs:
   update-badge:
     runs-on: ubuntu-latest
@@ -31,4 +34,3 @@ jobs:
           git add rootme_score.png
           git commit -m "Mise à jour du badge Root-Me" || exit 0
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-

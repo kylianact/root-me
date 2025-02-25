@@ -1,0 +1,38 @@
+name: Update RootMe Score
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Mise à jour quotidienne
+  workflow_dispatch:  # Permet d'exécuter manuellement
+
+permissions:
+  contents: write  # Autoriser l'écriture sur le dépôt
+
+jobs:
+  update-score:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Python script
+        env:
+          ROOTME_API_KEY: ${{ secrets.ROOTME_API_KEY }}
+        run: python update_rootme_score.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add rootme_score.json
+          git commit -m "Mise à jour du score RootMe" || exit 0
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git

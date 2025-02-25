@@ -3,7 +3,7 @@ import json
 import os
 
 # UID et clé API (la clé API sera stockée dans GitHub Secrets)
-UID = "TON_UID"
+UID = "815776"
 API_KEY = os.getenv("ROOTME_API_KEY")  # Récupère la clé API depuis GitHub Actions
 URL = f"https://www.root-me.org/API/private/user/{UID}"
 

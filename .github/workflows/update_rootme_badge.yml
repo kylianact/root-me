@@ -30,4 +30,5 @@ jobs:
           git config --global user.email "actions@github.com"
           git add rootme_score.png
           git commit -m "Mise à jour du badge Root-Me" || exit 0
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+

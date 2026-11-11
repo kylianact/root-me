@@ -1,47 +1,53 @@
-import requests
 import json
 import os
+import sys
+
+import requests
 
 # UID Root-Me
 UID = "815776"
 
-# Récupérer la clé API depuis les variables d'environnement
+# API officielle Root-Me : https://api.www.root-me.org
+# L'authentification se fait via un cookie "api_key" (clé visible dans
+# Root-Me > Mon profil > Préférences).
+URL = f"https://api.www.root-me.org/auteurs/{UID}"
+OUTPUT = "rootme_score.json"
+
 API_KEY = os.getenv("ROOTME_API_KEY")
-
 if not API_KEY:
-    print("❌ Erreur : Clé API manquante. Vérifie ton secret GitHub.")
-    exit(1)
+    sys.exit("❌ Clé API manquante : configure le secret GitHub ROOTME_API_KEY.")
 
-# URL de l'API Root-Me
-URL = f"https://www.root-me.org/API/private/user/{UID}"
-
-# Headers d'authentification
-headers = {"Authorization": f"Bearer {API_KEY}"}
-
-# Requête API
-response = requests.get(URL, headers=headers)
-
-# Debug : Afficher le statut et la réponse complète
+response = requests.get(
+    URL,
+    cookies={"api_key": API_KEY.strip()},
+    headers={"User-Agent": "rootme-score-badge"},
+    timeout=30,
+)
 print("➡ Status Code:", response.status_code)
-print("➡ Réponse API:", response.text)
 
-if response.status_code == 200:
-    data = response.json()
-    score = data.get("score", "N/A")
-elif response.status_code == 403:
-    print("❌ Erreur 403 : Accès refusé. Vérifie ta clé API Root-Me.")
-    score = "Erreur 403"
-elif response.status_code == 404:
-    print("❌ Erreur 404 : UID invalide. Vérifie ton identifiant Root-Me.")
-    score = "Erreur 404"
-else:
-    print(f"❌ Erreur {response.status_code} : {response.text}")
-    score = "Erreur"
+if response.status_code != 200:
+    # On ne touche pas au badge : il garde la dernière valeur valide.
+    print("➡ Réponse API:", response.text[:500])
+    sys.exit(f"❌ Erreur API Root-Me ({response.status_code}). Vérifie la clé API et l'UID.")
 
-# Générer un fichier JSON pour Shields.io
-score_data = {"label": "RootMe Score", "message": str(score), "color": "blue"}
+data = response.json()
+# Selon les versions, l'API renvoie un objet ou une liste contenant l'objet
+if isinstance(data, list):
+    data = data[0] if data else {}
 
-with open("rootme_score.json", "w") as json_file:
-    json.dump(score_data, json_file)
+score = data.get("score")
+if score in (None, ""):
+    print("➡ Réponse API:", json.dumps(data)[:500])
+    sys.exit("❌ Champ 'score' introuvable dans la réponse.")
+
+score_data = {
+    "schemaVersion": 1,
+    "label": "RootMe Score",
+    "message": f"{score} pts",
+    "color": "blue",
+}
+
+with open(OUTPUT, "w", encoding="utf-8") as f:
+    json.dump(score_data, f)
 
 print("✅ Score RootMe mis à jour :", score)

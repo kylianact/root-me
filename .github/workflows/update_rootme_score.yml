@@ -2,7 +2,7 @@ name: Update RootMe Score
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Mise à jour quotidienne
+    - cron: "0 */6 * * *"  # Mise à jour toutes les 6 heures
   workflow_dispatch:  # Permet d'exécuter manuellement
 
 permissions:
@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 

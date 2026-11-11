@@ -1,0 +1,10 @@
+name: Debug API
+on: workflow_dispatch
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: pip install requests && python debug_api.py
+        env:
+          ROOTME_API_KEY: ${{ secrets.ROOTME_API_KEY }}

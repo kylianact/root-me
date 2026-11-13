@@ -6,7 +6,7 @@
 *Mon parcours sur [Root-Me](https://www.root-me.org), plateforme d'apprentissage du hacking éthique.*
 
 <a href="https://www.root-me.org/kylian_act"><img src="https://img.shields.io/badge/Score-1065_pts-1f6feb?style=for-the-badge" alt="Score"></a>
-<a href="https://www.root-me.org/kylian_act"><img src="https://img.shields.io/badge/Classement-%2315_242-8957e5?style=for-the-badge" alt="Classement"></a>
+<a href="https://www.root-me.org/kylian_act"><img src="https://img.shields.io/badge/Classement-%2315_244-8957e5?style=for-the-badge" alt="Classement"></a>
 <a href="https://www.root-me.org/kylian_act"><img src="https://img.shields.io/badge/Rang-Trainee-2ea043?style=for-the-badge" alt="Rang"></a>
 <a href="https://www.root-me.org/kylian_act"><img src="https://img.shields.io/badge/Challenges-81_%2F_608-d29922?style=for-the-badge" alt="Challenges"></a>
 
@@ -16,7 +16,7 @@
 
 | Score | Classement | Rang | Challenges validés | Progression globale |
 |:---:|:---:|:---:|:---:|:---:|
-| **1065 pts** | **#15 242** | **Trainee** | **81 / 608** | `██░░░░░░░░░░░░░` 13 % |
+| **1065 pts** | **#15 244** | **Trainee** | **81 / 608** | `██░░░░░░░░░░░░░` 13 % |
 
 ## 🗂️ Progression par catégorie
 
@@ -187,6 +187,6 @@
 
 <div align="center">
 
-<sub>🔄 Mis à jour automatiquement via GitHub Actions et l'API Root-Me — dernière mise à jour le 13/11/2026.</sub>
+<sub>🔄 Mis à jour automatiquement via GitHub Actions et l'API Root-Me — dernière mise à jour le 14/11/2026.</sub>
 
 </div>

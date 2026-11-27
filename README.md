@@ -187,6 +187,6 @@
 
 <div align="center">
 
-<sub>🔄 Mis à jour automatiquement via GitHub Actions et l'API Root-Me — dernière mise à jour le 26/11/2026.</sub>
+<sub>🔄 Mis à jour automatiquement via GitHub Actions et l'API Root-Me — dernière mise à jour le 27/11/2026.</sub>
 
 </div>
